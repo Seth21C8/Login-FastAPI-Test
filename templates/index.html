@@ -7,6 +7,13 @@
     <link rel = "stylesheet" href = "/static/style.css">
 </head>
 <body>
+    <div class = "greeting">
+        {% if not user %}
+            <p>Hello Guest</p>
+        {% else %}
+            <p>Hello {{ user['name'] }}</p>
+        {% endif %}
+    </div>
     {% if not user %}
         <input type = "checkbox" id = "toggle-form">
     {% endif %}
@@ -60,6 +67,5 @@
     <button id="reset">Restart</button>
     <script src="/static/TTTScript.js"></script> -->
 
-</div>
 </body>
 </html>
