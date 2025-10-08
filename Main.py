@@ -55,7 +55,7 @@ async def logout(request: Request):
     request.session.clear()
     return RedirectResponse(url = "/")
 
-@app.get("/TTT", response_class=HTMLResponse)
-async def tictactoe(request: Request):
-    return templates.TemplateResponse("TTT.html", {"request": request})
+# @app.get("/TTT", response_class=HTMLResponse)
+# async def tictactoe(request: Request):
+#     return templates.TemplateResponse("TTT.html", {"request": request})
 
