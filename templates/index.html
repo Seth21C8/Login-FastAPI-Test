@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI login</title>
+    <link rel = "stylesheet" href = "/static/style.css">
+</head>
+<body>
+    {% if not user %}
+        <input type = "checkbox" id = "toggle-form">
+    {% endif %}
+    <div class = "Topbar">
+        <div class = "login-container">
+        {% if not user %}
+            <!--Login button-->
+            <label for = "toggle-form" class = "loginbtn">Login</label>
+        {% else %}
+            <a href="/profile">
+                <img src="{{ user['picture'] }}" alt="Profile picture" class = "Profile-index">
+            </a>
+        {% endif %}
+        </div>
+    </div>
+    {% if not user %}
+        <!--Login Form-->
+        <form action = "/local-login" class = "login-form" method = "post">
+            <label for = "toggle-form" class = "closebtn">×</label>
+            <h2>Login</h2>
+                <input type = "text" placeholder = "Username" name = "username" required>
+                <input type = "password" placeholder = "Password" name = "password" required>
+            <button type = "submit" class = "SI">Sign In</button>
+            <div class = "mid">
+                <p><hr class = "lefthr">or<hr class = "righthr"></p>
+            </div>
+            <!-- Google login form -->
+            <div class = "google-logform">
+                <a class="gbtn" href="/login">
+                    <img src = "/Photo/Google.png" class = "G-img">Login with Google
+                </a>
+            </div>
+        </form>
+        <!--Background overlay-->
+        <div class = "overlay"></div>
+    {% endif %}
+    <!-- <div class="TTT-container">
+    <h2>Tic Tac Toe</h2>
+    <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+    <p id="status">Player X's turn</p>
+    <button id="reset">Restart</button>
+    <script src="/static/TTTScript.js"></script> -->
+
+</div>
+</body>
+</html>
