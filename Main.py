@@ -11,7 +11,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 load_dotenv()
 app = FastAPI()
-app.mount("/Photo", StaticFiles(directory="Photo"), name="Photo")
+app.mount("/static/Photo", StaticFiles(directory="static/Photo"), name="static/Photo")
 app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY"))
 
 app.mount("/static", StaticFiles(directory = "static"), name = "static")
