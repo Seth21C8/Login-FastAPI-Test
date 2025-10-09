@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FastAPI login</title>
-    <link rel = "stylesheet" href = "/static/style.css">
+    <link rel = "stylesheet" href = "/static/CSS/style.css">
 </head>
 <body>
     <div class = "greeting">
@@ -14,9 +14,11 @@
             <p>Hello {{ user['name'] }}</p>
         {% endif %}
     </div>
+
     {% if not user %}
         <input type = "checkbox" id = "toggle-form">
     {% endif %}
+
     <div class = "Topbar">
         <div class = "login-container">
         {% if not user %}
@@ -29,6 +31,7 @@
         {% endif %}
         </div>
     </div>
+
     {% if not user %}
         <!--Login Form-->
         <form action = "/local-login" class = "login-form" method = "post">
@@ -40,6 +43,7 @@
             <div class = "mid">
                 <p><hr class = "lefthr">or<hr class = "righthr"></p>
             </div>
+
             <!-- Google login form -->
             <div class = "google-logform">
                 <a class="gbtn" href="/login">
@@ -47,25 +51,9 @@
                 </a>
             </div>
         </form>
+        
         <!--Background overlay-->
         <div class = "overlay"></div>
     {% endif %}
-    <!-- <div class="TTT-container">
-    <h2>Tic Tac Toe</h2>
-    <div class="board" id="board">
-        <div class="cell" data-index="0"></div>
-        <div class="cell" data-index="1"></div>
-        <div class="cell" data-index="2"></div>
-        <div class="cell" data-index="3"></div>
-        <div class="cell" data-index="4"></div>
-        <div class="cell" data-index="5"></div>
-        <div class="cell" data-index="6"></div>
-        <div class="cell" data-index="7"></div>
-        <div class="cell" data-index="8"></div>
-    </div>
-    <p id="status">Player X's turn</p>
-    <button id="reset">Restart</button>
-    <script src="/static/TTTScript.js"></script> -->
-
 </body>
 </html>

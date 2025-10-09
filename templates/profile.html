@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="/static/ProfileStyle.css">
+    <link rel="stylesheet" href="/static/CSS/ProfileStyle.css">
 </head>
 <body>
     <a href="/" class = "Back">&larr;Back</a>
@@ -13,6 +13,7 @@
     <div class = "Profile-box">
         <img src="{{ user.picture }}" alt="profile picture" class = "Profile"><br>
         <h2 class = "user-name">{{ user.name }}</h2>
+        <h4 class = "Email">Email:{{ user.email }}</h4>
         <a href="/logout" class = "Logout-btn">Logout<br></a>
     </div>
 </body>

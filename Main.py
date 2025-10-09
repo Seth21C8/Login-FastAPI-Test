@@ -1,7 +1,6 @@
-from typing import Union
 import os
 import pydantic
-import pydantic_core._pydantic_core
+from typing import Union
 from fastapi import FastAPI, Request 
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -54,8 +53,4 @@ async def auth(request: Request):
 async def logout(request: Request):
     request.session.clear()
     return RedirectResponse(url = "/")
-
-# @app.get("/TTT", response_class=HTMLResponse)
-# async def tictactoe(request: Request):
-#     return templates.TemplateResponse("TTT.html", {"request": request})
 
