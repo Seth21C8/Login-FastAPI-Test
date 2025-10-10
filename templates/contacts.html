@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Contacts</title>
+    <link rel = "stylesheet" href = "/static/CSS/contactsStyle.css">
+</head>
+<body>
+    <a href = "/" class = "Back">&larr;Back</a>
+    
+    <div>
+        <h3 class = "head">Your Google Contacts</h3>
+    </div>
+
+    <table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    {% for c in contacts %}
+    <tr>
+        <td>{{ c.name }}</td>
+        <td>{{ c.email }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    
+</body>
+</html>

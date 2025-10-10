@@ -10,15 +10,19 @@
     <div class = "greeting">
         {% if not user %}
             <p>Hello Guest</p>
+            <p>Please log in to access Google Drive and Contacts.</p>            
         {% else %}
             <p>Hello {{ user['name'] }}</p>
+            <a href="/contacts" class = "loginbtn">View Contacts</a>            
         {% endif %}
     </div>
-
+    
+    <!--check for login-->
     {% if not user %}
         <input type = "checkbox" id = "toggle-form">
     {% endif %}
-
+    
+    <!--Top part of page-->
     <div class = "Topbar">
         <div class = "login-container">
         {% if not user %}
@@ -28,6 +32,7 @@
             <a href="/profile">
                 <img src="{{ user['picture'] }}" alt="Profile picture" class = "Profile-index">
             </a>
+
         {% endif %}
         </div>
     </div>
