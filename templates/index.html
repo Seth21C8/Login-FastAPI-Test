@@ -13,7 +13,8 @@
             <p>Please log in to access Google Drive and Contacts.</p>            
         {% else %}
             <p>Hello {{ user['name'] }}</p>
-            <a href="/contacts" class = "loginbtn">View Contacts</a>            
+            <a href = "/contacts" class = "loginbtn">View Google Contacts</a>
+            <a href = "/drive" class = "loginbtn">View Google Drive</a>
         {% endif %}
     </div>
     

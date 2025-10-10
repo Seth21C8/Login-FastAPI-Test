@@ -44,8 +44,8 @@ async def profile(request: Request):
         return RedirectResponse(url = "/")
     return templates.TemplateResponse("profile.html", {"request": request, "user": user})
 
-#Contacts
-@app.get("/contacts", response_class=HTMLResponse)
+#Google Contacts
+@app.get("/contacts", response_class = HTMLResponse)
 async def contacts(request: Request):
     token = request.session.get("token")
     if not token:
@@ -64,13 +64,27 @@ async def contacts(request: Request):
         contacts.append({"name": name, "email": email})
     return templates.TemplateResponse("contacts.html", {"request": request, "contacts": contacts})
 
+#Google Drive
+@app.get("/drive", response_class = HTMLResponse)
+async def drive_files(request: Request):
+    token = request.session.get("token")
+    if not token:
+        return RedirectResponse(url = "/login")
+    resp = await oauth.google.get(
+        "https://www.googleapis.com/drive/v3/files",
+        params = {"pageSize": 10, "fields": "files(id, name, mimeType, webViewLink)"},
+        token = token,
+    )
+    files = resp.json().get("files", [])
+    return templates.TemplateResponse("drive.html", {"request": request, "files": files})
+
 #After google Login
 @app.get("/auth/callback")
 async def auth(request: Request):
     token = await oauth.google.authorize_access_token(request)
     user = token.get("userinfo")
     request.session["user"] = user
-    request.session["token"] = token    
+    request.session["token"] = token #Save token view google stuff for now
     return RedirectResponse(url = "/")
     
 
