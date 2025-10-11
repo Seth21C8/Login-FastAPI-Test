@@ -17,11 +17,13 @@
     <tr>
         <th>Name</th>
         <th>Email</th>
+        <th>Phone Number</th>
     </tr>
     {% for c in contacts %}
     <tr>
         <td>{{ c.name }}</td>
         <td>{{ c.email }}</td>
+        <td>{{ c.phonenumber }}</td>
     </tr>
     {% endfor %}
     </table>
