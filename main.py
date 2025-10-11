@@ -58,7 +58,7 @@ async def contacts(request: Request):
         return RedirectResponse(url = "/login")
     resp = await oauth.google.get(
         "https://people.googleapis.com/v1/people/me/connections",
-        params = {"personFields": "names,emailAddresses"},
+        params = {"personFields": "names,emailAddresses,phoneNumbers"},
         token = token,
     )
     
@@ -67,7 +67,9 @@ async def contacts(request: Request):
     for person in data.get("connections", []):
         name = person.get("names", [{}])[0].get("displayName", "Unknown")
         email = person.get("emailAddresses", [{}])[0].get("value", "No Email")
-        contacts.append({"name": name, "email": email})
+        phone_number = person.get("phoneNumbers", [])
+        phonenumber = phone_number[0].get("value") if phone_number else "No Phone Number"
+        contacts.append({"name": name, "email": email, "phonenumber": phonenumber})
     return templates.TemplateResponse("contacts.html", {"request": request, "contacts": contacts})
 
 #Google Drive
