@@ -1,4 +1,4 @@
-lib/python3.12/site-packages/
+.venv
 *.dist-info/
 __pycache__/
 *.pyc
