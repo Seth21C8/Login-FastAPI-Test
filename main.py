@@ -23,7 +23,13 @@ oauth.register(
     client_id=os.getenv("GOOGLE_CLIENT_ID"),
     client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
     server_metadata_url="https://accounts.google.com/.well-known/openid-configuration",
-    client_kwargs={"scope": "openid email profile https://www.googleapis.com/auth/contacts.readonly"},
+    client_kwargs={
+        "scope": (
+            "openid email profile "
+            "https://www.googleapis.com/auth/contacts.readonly "
+            "https://www.googleapis.com/auth/drive.readonly"
+        )
+    },
 )
 
 @app.get("/", response_class = HTMLResponse)
@@ -68,13 +74,16 @@ async def contacts(request: Request):
 @app.get("/drive", response_class = HTMLResponse)
 async def drive_files(request: Request):
     token = request.session.get("token")
+
     if not token:
         return RedirectResponse(url = "/login")
+    
     resp = await oauth.google.get(
         "https://www.googleapis.com/drive/v3/files",
         params = {"pageSize": 10, "fields": "files(id, name, mimeType, webViewLink)"},
         token = token,
     )
+    data = resp.json()
     files = resp.json().get("files", [])
     return templates.TemplateResponse("drive.html", {"request": request, "files": files})
 
