@@ -11,7 +11,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 load_dotenv()
 app = FastAPI()
-app.mount("/static/Photo", StaticFiles(directory="static/Photo"), name="Photo")
+app.mount("/static/images", StaticFiles(directory="static/images"), name="images")
 app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY"))
 
 app.mount("/static", StaticFiles(directory = "static"), name = "static")
@@ -92,6 +92,8 @@ async def drive_files(request: Request):
 #After google Login
 @app.get("/auth/callback")
 async def auth(request: Request):
+    print("CLIENT_ID:", os.getenv("GOOGLE_CLIENT_ID"))
+
     token = await oauth.google.authorize_access_token(request)
     user = token.get("userinfo")
     request.session["user"] = user
